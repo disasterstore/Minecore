@@ -1,0 +1,40 @@
+name: Tailscale Session
+
+on:
+  workflow_dispatch:
+
+jobs:
+  session:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Tailscale
+        run: |
+          curl -fsSL https://tailscale.com/install.sh | sh
+
+      - name: Start Tailscale
+        run: |
+          sudo tailscaled &
+          sleep 10
+          sudo tailscale up --authkey=${{ secrets.TAILSCALE_AUTHKEY }}
+
+      - name: Create user anurag
+        run: |
+          if ! id -u anurag >/dev/null 2>&1; then
+            sudo useradd -m -s /bin/bash anurag
+            echo "anurag:anuragxd1232" | sudo chpasswd
+            sudo usermod -aG sudo anurag
+            echo "anurag ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/anurag
+          fi
+
+      - name: Show Tailscale IP
+        run: |
+          tailscale ip -4
+
+      - name: Keep session alive
+        run: |
+          sleep 21600
