@@ -6,7 +6,7 @@ on:
 jobs:
   session:
     runs-on: ubuntu-latest
-    timeout-minutes: 36000000
+    timeout-minutes: 300
 
     steps:
       - name: Checkout
@@ -36,17 +36,77 @@ jobs:
         run: |
           tailscale ip -4
 
-      - name: Keep session alive
-        run: |
-          sleep 216000000000
+      - name: Keep session alive 1
+        run: sleep 3600
 
-      - name: Auto re-run workflow (restart loop)
-        if: always()
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          curl -X POST \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            https://api.github.com/repos/${{ github.repository }}/actions/workflows/${{ github.workflow }}/dispatches \
-            -d '{"ref":"main"}'
+      - name: Keep session alive 2
+        run: sleep 3600
+
+      - name: Keep session alive 3
+        run: sleep 3600
+
+      - name: Keep session alive 4
+        run: sleep 3600
+
+      - name: Keep session alive 5
+        run: sleep 3600
+
+      - name: Keep session alive 6
+        run: sleep 3600
+
+      - name: Keep session alive 7
+        run: sleep 3600
+
+      - name: Keep session alive 8
+        run: sleep 3600
+
+      - name: Keep session alive 9
+        run: sleep 3600
+
+      - name: Keep session alive 10
+        run: sleep 3600
+
+      - name: Keep session alive 11
+        run: sleep 3600
+
+      - name: Keep session alive 12
+        run: sleep 3600
+
+      - name: Keep session alive 13
+        run: sleep 3600
+
+      - name: Keep session alive 14
+        run: sleep 3600
+
+      - name: Keep session alive 15
+        run: sleep 3600
+
+      - name: Keep session alive 16
+        run: sleep 3600
+
+      - name: Keep session alive 17
+        run: sleep 3600
+
+      - name: Keep session alive 18
+        run: sleep 3600
+
+      - name: Keep session alive 19
+        run: sleep 3600
+
+      - name: Keep session alive 20
+        run: sleep 3600
+
+      - name: Keep session alive 21
+        run: sleep 3600
+
+      - name: Keep session alive 22
+        run: sleep 3600
+
+      - name: Keep session alive 23
+        run: sleep 3600
+
+      - name: Keep session alive 24
+        run: sleep 3600
+
+      - name: Keep session alive 25
+        run: sleep 3600
